@@ -1,0 +1,77 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Login</title>
+    <style>
+        .message {
+            margin-top: 5px;
+            margin-bottom: 5px;
+            padding: 5px;
+            border-radius: 5px;
+            font-size: 12px;
+            display: none;
+            animation: fadein 0.5s, fadeout 0.5s 2.5s;
+            }
+            .error-m {
+                color: #721c24;
+                background-color: #f8d7da;
+                border-color: #f5c6cb;
+            }
+            @keyframes fadein {
+                from { opacity: 0; }
+                to { opacity: 1; }
+            }
+            @keyframes fadeout {
+                from { opacity: 1; }
+                to { opacity: 0; }
+            }
+    </style>
+    <link rel="stylesheet" href="../static/style.css">
+    <link href='https://unpkg.com/boxicons@2.1.4/css/boxicons.min.css' rel='stylesheet'>
+</head>
+<body>
+    <section class="wrapper">
+        <form action="/login" method="post">
+            <h1>Login</h1>
+
+            <div class="input-field-login">
+                <i class="bx bxs-user"></i>
+                <input type="text" name="username" placeholder="Username" required>
+            </div>
+
+            <div class="input-field-login">
+                <i class='bx bxs-lock-alt'></i>
+                <input type="password" name="password" placeholder="Password" required>
+                {% if insuccess %}
+                    <p id="error-message" class="message error-m">Usuario o contraseña incorrectas, porfavor vuelva a introducir.</p>
+                {% endif %}
+            </div>
+
+            <div class="rembeber-forgot">
+                <label>
+                    <input type="checkbox"> Remember me
+                </label>
+                 
+            </div>
+            <button class="btn" type="submit">Login</button>
+
+            <div class="register-link">
+                <p>¿No tienes una cuenta? <a href="/signup">Registro</a> </p>
+            </div>
+        </form>
+    </section>
+    <script>
+        window.onload = function() {
+            const successMessage = document.getElementById('error-message');
+        if (successMessage) {
+            successMessage.style.display ="block";
+            setTimeout(() => {
+                successMessage.style.display = 'none';
+            }, 6000);  // El mensaje desaparecerá después de 3 segundos
+        }
+    }
+</script>
+</body>
+</html>
