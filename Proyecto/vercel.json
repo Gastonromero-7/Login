@@ -1,15 +1,12 @@
 {
-    "version": 2,
     "builds": [
       {
         "src": "Proyecto/main.py",
-        "use": "@vercel/python",
-        "config": { "maxLambdaSize": "15mb" }
+        "use": "@vercel/python"
       }
     ],
     "routes": [
-      { "src": "/(.*)", "dest": "Proyecto/routers/users.py" },
-      { "src": "/(.*)", "dest": "Proyecto/routers/auth2.py" }
+      { "src": "/(.*)", "dest": "Proyecto/main.py" }
     ]
   }
   
