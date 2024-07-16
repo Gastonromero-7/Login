@@ -6,7 +6,8 @@
       }
     ],
     "routes": [
-      { "src": "/(.*)", "dest": "Proyecto/main.py" }
+      { "src": "/", "dest": "/" },
+      { "src": "/test", "dest": "/" }
     ]
   }
   
