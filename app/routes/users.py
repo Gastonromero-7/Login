@@ -1,5 +1,5 @@
 from fastapi import APIRouter,Form,HTTPException,status,Request
-from client.client import db_client
+from client.client import user_collection
 from fastapi.responses import RedirectResponse,HTMLResponse
 from typing import Annotated
 from routes.schemes.user import user_schemes_db,user_schemes,user_schemes_dbb
@@ -27,9 +27,9 @@ async def create_user(username:Annotated[str,Form()],email:Annotated[str,Form()]
     except ValidationError as e:
         return jina2.TemplateResponse("registro.html",{"request":request,"success": False, "error": e.errors()[0]['msg']})
 
-    id = db_client.users.insert_one(new_user).inserted_id
+    id = user_collection.insert_one(new_user).inserted_id
 
-    user_schemes_dbb(db_client.users.find_one({"_id":id}))
+    user_schemes_dbb(user_collection.find_one({"_id":id}))
 
     return RedirectResponse("/login",
                             status_code=302)
@@ -37,14 +37,14 @@ async def create_user(username:Annotated[str,Form()],email:Annotated[str,Form()]
 
 def search_user(field:str,key:str):
     try:
-        user = user_schemes(db_client.users.find_one({field:key}))
+        user = user_schemes(user_collection.find_one({field:key}))
         return User(**user)
     except:
         return "Error"
     
 def search_user_db(field:str,key:str):
     try:
-        user = user_schemes_db(db_client.users.find_one({field:key}))
+        user = user_schemes_db(user_collection.find_one({field:key}))
         return User_db(**user)
     except:
         return "Error"
