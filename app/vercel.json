@@ -9,7 +9,11 @@
   "routes": [
     {
       "src": "/(.*)",
-      "dest": "app/main.py"
+      "dest": "app/routes/auth2.py"
+    },
+    {
+      "src": "/(.*)",
+      "dest": "app/routes/users.py"
     }
   ]
 }
