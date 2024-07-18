@@ -1,9 +1,51 @@
 {
+  
+ 
   "version": 2,
-  "routes": [
-    {
-      "src": "/(.*)",
-      "dest": "app/main.py"
-    }
-  ]
-}
+    
+   
+  "builds": [
+      
+     
+  {
+        
+       
+  "src": "main.py",
+        
+       
+  "use": "@vercel/python"
+      
+     
+  }
+    
+   
+  ],
+    "routes": [
+      
+     
+  {
+        
+       
+  "src": "/(.*)",
+        
+       
+  "dest": "/main.py"
+      
+     
+  }
+    
+   
+  ],
+    
+   
+  "env": {
+      
+     
+  "MONGODB_URI": "mongodb+srv://gastonhromero7:Messi41175282@cluster0.pu03jpc.mongodb.net/?retryWrites=true&w=majority&appName=Cluster0",
+      
+     
+  "OTHER_ENV_VAR": "value"
+    
+   
+  }
+  }
