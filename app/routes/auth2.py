@@ -4,7 +4,7 @@ from passlib.context import CryptContext
 from typing import Annotated
 from fastapi.templating import Jinja2Templates
 from fastapi.responses import RedirectResponse
-from client.client import db_client
+from client.client import user_collection
 from routes.schemes.user import user_schemes_db,user_schemes
 from routes.models.users import User_db,User
 from datetime import datetime,timezone,timedelta
@@ -24,20 +24,20 @@ crypt = CryptContext(schemes=["bcrypt"])
 
 def search_user(username):
     try:
-        user = user_schemes(db_client.users.find_one({"username":username}))
+        user = user_schemes(user_collection.find_one({"username":username}))
         return User(**user)
     except:
         return "Error"
 def search_user_db(username):
     try:
-        user = user_schemes_db(db_client.users.find_one({"username":username}))
+        user = user_schemes_db(user_collection.find_one({"username":username}))
         return User_db(**user)
     except:
         return "Error"
     
 @root_login.post("/login")
 async def login (username : Annotated[str,Form()],password:Annotated[str,Form()],request:Request):
-    users = db_client.users.find_one({"username":username})
+    users = user_collection.find_one({"username":username})
     if not users:
         return jina2.TemplateResponse("login.html",
                                             {"request":request,
