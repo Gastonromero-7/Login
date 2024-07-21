@@ -3,7 +3,7 @@ from fastapi.staticfiles import StaticFiles
 from fastapi.templating import Jinja2Templates
 from fastapi.responses import HTMLResponse
 import os
-from routes import users,auth2
+from app.routes import users,auth2
 
 
 app = FastAPI()
