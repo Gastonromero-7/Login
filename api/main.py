@@ -10,6 +10,10 @@ app = FastAPI()
 app.include_router(rooter)
 app.include_router(root_login)
 
+if __name__ == "__main__":
+    import uvicorn
+    uvicorn.run(app, host="0.0.0.0", port=8000)
+
 static_path = os.path.join(os.path.dirname(__file__),'./static')
 templates_path = os.path.join(os.path.dirname(__file__),'./templates/')
 
