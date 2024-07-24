@@ -6,6 +6,8 @@
     }
   },
   "routes": [
-    { "src": "/(.*)", "dest": "/api/main.py" }
+    { "src": "/(.*)", "dest": "/api/main.py" },
+    { "src": "/(.*)", "dest": "/api/router/routes/auth2.py" },
+    { "src": "/(.*)", "dest": "/api/router/routes/users.py" }
   ]
 }
